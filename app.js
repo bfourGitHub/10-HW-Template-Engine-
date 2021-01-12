@@ -10,6 +10,91 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const employeeList = [];
+
+
+// Ask user for manager info
+function askUserForManagerInfo() {
+
+    return inquirer.prompt([
+        {
+            message: "Ask a question?",
+            name: "ReplaceME",
+            type: "input"
+        }
+    ]).then(( managerData ) => {
+
+        //
+        const newManager = new Manager( managerData.name, managerData.id, managerData.email, managerData.officeNumber)
+        
+        employeeList.push( newManager );
+
+        askUserForEmployeeType();
+    });
+
+}
+
+// Ask user for next employee type
+function askUserForEmployeeType() {
+
+    return inquirer.prompt([
+        {
+            message: "Ask a question?",
+            name: "ReplaceME",
+            type: "input"
+        }
+    ]).then(( newEmployeeChoiceData ) => {
+
+        // If they selected a new Engineer
+        askUserForEngineerInfo();
+
+        // ELSE if the user selected a new Intern
+        askUserForInternInfo();
+
+        // ELSE  if they dont choose a new employee
+        createHtmlFile();
+        
+
+    });
+}
+
+// Ask user for engineer info
+function askUserForEngineerInfo() {
+
+    return inquirer.prompt([
+        {
+            message: "Ask a question?",
+            name: "ReplaceME",
+            type: "input"
+        }
+    ]).then(( response ) => {
+
+    });
+}
+
+// Ask user for intern info
+function askUserForInternInfo() {
+
+    return inquirer.prompt([
+        {
+            message: "Ask a question?",
+            name: "ReplaceME",
+            type: "input"
+        }
+    ]).then(( response ) => {
+
+    });
+}
+
+function createHtmlFile() {
+
+    const htmlContent = render( employeeList );
+
+    // Use the FS module to create the output file
+
+};
+
+askUserForManagerInfo();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
