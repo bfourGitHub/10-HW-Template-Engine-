@@ -6,27 +6,51 @@ test("Can instantiate Employee instance", () => {
 });
 
 test("Can set name via constructor arguments", () => {
+  // Arrange
   const name = "Alice";
+
+  // Act
   const e = new Employee(name);
+
+  // Assert
   expect(e.name).toBe(name);
 });
 
 test("Can set id via constructor argument", () => {
+
+  // Arrange
   const testValue = 100;
+
+  // Act 
   const e = new Employee("Foo", testValue);
+
+  // Assert
   expect(e.id).toBe(testValue);
 });
 
 test("Can set email via constructor argument", () => {
+
+  // Arrange
   const testValue = "test@test.com";
+
+  // Act
   const e = new Employee("Foo", 1, testValue);
+
+  // Assert
   expect(e.email).toBe(testValue);
 });
 
 test("Can get name via getName()", () => {
+
+  // Arrange
   const testValue = "Alice";
   const e = new Employee(testValue);
-  expect(e.getName()).toBe(testValue);
+  
+  // Act
+  const result = e.getName();
+  
+  // Assert
+  expect(result).toBe(testValue);
 });
 
 test("Can get id via getId()", () => {
