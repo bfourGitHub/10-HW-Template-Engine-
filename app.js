@@ -18,8 +18,23 @@ function askUserForManagerInfo() {
 
     return inquirer.prompt([
         {
-            message: "Ask a question?",
-            name: "ReplaceME",
+            message: "What is your manager's name?",
+            name: "name",
+            type: "input"
+        },
+        {
+            message: "What is your manager's id?",
+            name: "id",
+            type: "input"
+        },
+        {
+            message: "What is your manager's email?",
+            name: "email",
+            type: "input"
+        },
+        {
+            message: "What is your manager's office number?",
+            name: "officeNumber",
             type: "input"
         }
     ]).then(( managerData ) => {
@@ -29,68 +44,66 @@ function askUserForManagerInfo() {
         
         employeeList.push( newManager );
 
-        askUserForEmployeeType();
+        console.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+
+        createHtmlFile();
+
+        // askUserForEmployeeType();
     });
 
 }
 
 // Ask user for next employee type
-function askUserForEmployeeType() {
+// function askUserForEmployeeType() {
 
-    return inquirer.prompt([
-        {
-            message: "Ask a question?",
-            name: "ReplaceME",
-            type: "input"
-        }
-    ]).then(( newEmployeeChoiceData ) => {
+//     return inquirer.prompt([
+//         {
+//             message: "Ask a question?",
+//             name: "ReplaceME",
+//             type: "input"
+//         }
+//     ]).then(( newEmployeeChoiceData ) => {
 
-        // If they selected a new Engineer
-        askUserForEngineerInfo();
+//         // If they selected a new Engineer
+//         askUserForEngineerInfo();
 
-        // ELSE if the user selected a new Intern
-        askUserForInternInfo();
+//         // ELSE if the user selected a new Intern
+//         askUserForInternInfo();
 
-        // ELSE  if they dont choose a new employee
-        createHtmlFile();
+//         // ELSE  if they dont choose a new employee
+//         createHtmlFile();
         
 
-    });
-}
+//     });
+// }
 
 // Ask user for engineer info
-function askUserForEngineerInfo() {
+// function askUserForEngineerInfo() {
 
-    return inquirer.prompt([
-        {
-            message: "Ask a question?",
-            name: "ReplaceME",
-            type: "input"
-        }
-    ]).then(( response ) => {
+//     return inquirer.prompt([
+//         {
+//             message: "Ask a question?",
+//             name: "ReplaceME",
+//             type: "input"
+//         }
+//     ]).then(( response ) => {
 
-    });
-}
+//     });
+// }
 
 // Ask user for intern info
-function askUserForInternInfo() {
-
-    return inquirer.prompt([
-        {
-            message: "Ask a question?",
-            name: "ReplaceME",
-            type: "input"
-        }
-    ]).then(( response ) => {
-
-    });
-}
+//  
 
 function createHtmlFile() {
 
+    console.log("Taylor Swift!")
     const htmlContent = render( employeeList );
 
     // Use the FS module to create the output file
+    fs.writeFile(outputPath, htmlContent , function (err) {
+        if (err) throw err;
+        console.log('Nick Jonas');
+      });
 
 };
 
