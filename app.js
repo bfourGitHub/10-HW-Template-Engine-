@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const Choices = require("inquirer/lib/objects/choices");
 
 const employeeList = [];
 
@@ -46,53 +47,118 @@ function askUserForManagerInfo() {
 
         console.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
 
-        createHtmlFile();
+        //createHtmlFile();
 
-        // askUserForEmployeeType();
+        askUserForEmployeeType();
     });
 
 }
 
 // Ask user for next employee type
-// function askUserForEmployeeType() {
+function askUserForEmployeeType() {
 
-//     return inquirer.prompt([
-//         {
-//             message: "Ask a question?",
-//             name: "ReplaceME",
-//             type: "input"
-//         }
-//     ]).then(( newEmployeeChoiceData ) => {
+    return inquirer.prompt([
+        {
+            message: "Would you like to add a new employee?",
+            name: "employeeType",
+            type: "list",
+            choices: ["Engineer", "Intern", "None"]
+        }
+    ]).then(( newEmployeeChoiceData ) => {
 
-//         // If they selected a new Engineer
-//         askUserForEngineerInfo();
+        switch ( newEmployeeChoiceData.employeeType ) {
+            case "Engineer":
+                askUserForEngineerInfo();
+                break;
+            case "Intern":
+                askUserForInternInfo();
+                break;
+            case "None":
+                createHtmlFile();
+                break;
 
-//         // ELSE if the user selected a new Intern
-//         askUserForInternInfo();
+        }
+        // Use SWITCH CASE to loop between options
+        // If they selected a new Engineer    
+        // ELSE if the user selected a new Intern
+        // ELSE  if they dont choose a new employee    
 
-//         // ELSE  if they dont choose a new employee
-//         createHtmlFile();
-        
-
-//     });
-// }
+    });
+}
 
 // Ask user for engineer info
-// function askUserForEngineerInfo() {
+function askUserForEngineerInfo() {
 
-//     return inquirer.prompt([
-//         {
-//             message: "Ask a question?",
-//             name: "ReplaceME",
-//             type: "input"
-//         }
-//     ]).then(( response ) => {
+    return inquirer.prompt([
+        {
+            message: "Please enter the new engineer's name.",
+            name: "name",
+            type: "input"
+        },
+        {
+            message: "Please enter the new engineer's id.",
+            name: "id",
+            type: "input"
+        },
+        {
+            message: "Please enter the new engineer's email address.",
+            name: "email",
+            type: "input"
+        },
+        {
+            message: "Please enter the new engineer's GitHub username.",
+            name: "github",
+            type: "input"
+        },
+    ]).then(( engineerData ) => {
 
-//     });
-// }
+        const newEngineer = new Engineer( engineerData.name, engineerData.id, engineerData.email, engineerData.github)
+        
+        employeeList.push( newEngineer );
+
+        console.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+
+        askUserForEmployeeType();
+
+    });
+}
 
 // Ask user for intern info
-//  
+function askUserForInternInfo() {
+
+    return inquirer.prompt([
+        {
+            message: "Please enter the new intern's name.",
+            name: "name",
+            type: "input"
+        },
+        {
+            message: "Please enter the new intern's id.",
+            name: "id",
+            type: "input"
+        },
+        {
+            message: "Please enter the new intern's email address.",
+            name: "email",
+            type: "input"
+        },
+        {
+            message: "Please enter the new intern's school.",
+            name: "school",
+            type: "input"
+        },
+    ]).then(( internData ) => {
+
+        const newIntern = new Intern( internData.name, internData.id, internData.email, internData.school)
+        
+        employeeList.push( newIntern );
+
+        console.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+
+        askUserForEmployeeType();
+
+    });
+}
 
 function createHtmlFile() {
 
