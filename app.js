@@ -17,24 +17,30 @@ const employeeList = [];
 // Ask user for manager info
 function askUserForManagerInfo() {
 
+    lineBreak ();
+    console.log("Welcome to your Software Engineering Team Generator!");
+    console.log("Respond to the following prompts to create, expand and manage your team!");
+    console.log("A team roster will then be generated and stored in your OUTPUT folder.");
+    lineBreak ();
+
     return inquirer.prompt([
         {
-            message: "What is your manager's name?",
+            message: "Please enter manager's name.",
             name: "name",
             type: "input"
         },
         {
-            message: "What is your manager's id?",
+            message: "Please enter manager's id.",
             name: "id",
             type: "input"
         },
         {
-            message: "What is your manager's email?",
+            message: "Please enter manager's email.",
             name: "email",
             type: "input"
         },
         {
-            message: "What is your manager's office number?",
+            message: "Please enter manager's office number.",
             name: "officeNumber",
             type: "input"
         }
@@ -45,9 +51,7 @@ function askUserForManagerInfo() {
         
         employeeList.push( newManager );
 
-        console.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
-
-        //createHtmlFile();
+        lineBreak ();
 
         askUserForEmployeeType();
     });
@@ -75,6 +79,7 @@ function askUserForEmployeeType() {
                 break;
             case "None":
                 createHtmlFile();
+
                 break;
 
         }
@@ -116,7 +121,7 @@ function askUserForEngineerInfo() {
         
         employeeList.push( newEngineer );
 
-        console.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+        lineBreak ();
 
         askUserForEmployeeType();
 
@@ -153,7 +158,7 @@ function askUserForInternInfo() {
         
         employeeList.push( newIntern );
 
-        console.log("~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
+        lineBreak ();
 
         askUserForEmployeeType();
 
@@ -162,16 +167,21 @@ function askUserForInternInfo() {
 
 function createHtmlFile() {
 
-    console.log("Taylor Swift!")
+    lineBreak ();
     const htmlContent = render( employeeList );
 
     // Use the FS module to create the output file
     fs.writeFile(outputPath, htmlContent , function (err) {
         if (err) throw err;
-        console.log('Nick Jonas');
+        console.log("Success! Your team roster has been generated.");
       });
 
 };
+
+function lineBreak() {
+    console.log(`=======================================================`);
+};
+
 
 askUserForManagerInfo();
 
