@@ -1,4 +1,4 @@
-# 10-HW-Template-Engine-
+# 10-HW-Template-Engine-Employee-Summary
 Unit 10 OOP Homework Assignment. UW Coding Bootcamp.
 
 ## Description
@@ -48,4 +48,4 @@ Team Generator [DEMO](https://drive.google.com/file/d/1rvRFp8O38uFP1F3-Tt1ey2MSP
 
 ## Deployment
 
-[Github Repository](https://github.com/bfourGitHub/10-HW-Template-Engine-)
+[Github Repository](https://github.com/bfourGitHub/10-HW-Template-Engine-Employee-Summary)
